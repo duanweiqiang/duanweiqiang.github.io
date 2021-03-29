@@ -598,7 +598,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <h2 id="适合使用try-catch的场景"><a href="#适合使用try-catch的场景" class="headerlink" title="适合使用try/catch的场景"></a>适合使用try/catch的场景</h2><p>因此，不要把判断 null ，undefined，这种都用try catch 。<br>而是尽量用在不可知的错误捕获上，而不是未知的错误。比如用来捕获宿主对象或者ECMAScript抛出的异常。</p>
 <p>NodeJS里大多数error都是用来处理异常的，因为异常是不可避免的，例如数据库挂了，网络错误，你虽然知道有可能，但是不知道何时发生，这些异常你需要捕捉或者传给上层。而错误处理，则是一些基本的判定，可以从代码级别避免其发生，可预知可推测，如果发生了，不是系统问题，而是你的程序有bug了。</p>
 <p>对于NodeJS来说，两种错误都时刻需要注意，特别是系统错误，因为不可预知，需要大量代码来catch错误，传递错误，最后统一处理。</p>
-<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>到这里我们的tru/catch就解释完了，基本包含了常用到的场景。</p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>到这里我们的try/catch就解释完了，基本包含了常用到的场景。</p>
 
             </div>
             <hr/>
@@ -953,12 +953,12 @@ console<span class="token punctuation">.</span><span class="token function">log<
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/css/">
-                        <span class="chip bg-color">css</span>
-                    </a>
-                    
                     <a href="/tags/web/">
                         <span class="chip bg-color">web</span>
+                    </a>
+                    
+                    <a href="/tags/css/">
+                        <span class="chip bg-color">css</span>
                     </a>
                     
                 </div>
