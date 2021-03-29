@@ -459,7 +459,7 @@
 <p>所有JavaScript错误实际上都是包含两个属性的对象：名称（例如，Error，syntaxError等）和实际错误信息。这就是为什么当e发出警报时，会得到类似ReferenceError的错误：undefined getListData。</p>
 <p>与JavaScript中的所有其他对象一样，你可以决定以不同的方式显示错误提示，例如e.name（ReferenceError）和e.message。</p>
 <p>但老实说，这与JavaScript的功能并没有真正的不同。那么，try / catch语句的好处是什么？</p>
-<h2 id="如何使用try-catch语句"><a href="#如何使用try-catch语句" class="headerlink" title="如何使用try/catch语句"></a>如何使用try/catch语句</h2><h4 id="throw"><a href="#throw" class="headerlink" title="throw"></a><code>throw</code></h4><p>  try/catch的优点之一是它能够显示你自己的自定义创建的错误。这称为抛错(throw error)。<br>  在你不希望JavaScript显示这种晦涩难懂的情况下，可以使用throw语句抛出错误（异常）。该错误可以是字符串，布尔值或对象。如果有错误，catch语句将显示你抛出的错误。（用户就不会看到乱码了，这样用户的反感情绪也不会那么大了）</p>
+<h2 id="如何使用try-catch语句"><a href="#如何使用try-catch语句" class="headerlink" title="如何使用try/catch语句"></a>如何使用try/catch语句</h2><h4 id="throw"><a href="#throw" class="headerlink" title="throw"></a>throw</h4><p>  try/catch的优点之一是它能够显示你自己的自定义创建的错误。这称为抛错(throw error)。<br>  在你不希望JavaScript显示这种晦涩难懂的情况下，可以使用throw语句抛出错误（异常）。该错误可以是字符串，布尔值或对象。如果有错误，catch语句将显示你抛出的错误。（用户就不会看到乱码了，这样用户的反感情绪也不会那么大了）</p>
 <pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">let</span> num <span class="token operator">=</span><span class="token function">prompt</span><span class="token punctuation">(</span><span class="token string">"输入一个大于30小于40的数字"</span><span class="token punctuation">)</span>
 <span class="token keyword">try</span> <span class="token punctuation">{</span> 
   <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">isNaN</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -499,19 +499,18 @@
   <span class="token function">alert</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>message<span class="token punctuation">)</span> 
 <span class="token punctuation">}</span> 
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"最终的执行"</span><span class="token punctuation">)</span></code></pre>
-<p>但是当你尝试使用try语句时，它仍然不起作用。这是因为JavaScript中有两种主要类型的错误；</p>
-<p><code>解析时错误</code>和<code>运行时错误或异常</code></p>
+<p>但是当你尝试使用try语句时，它仍然不起作用。这是因为JavaScript中有两种主要类型的错误；<code>解析时错误</code>和<code>运行时错误或异常</code>；</p>
 <p><code>解析时错误</code>是代码内部发生的错误，主要是因为引擎无法解析代码。</p>
 <p>例如，从上面看，JavaScript无法理解花括号的含义，因此，你的try/catch在这里没有作用。</p>
 <p><code>运行时错误</code>是在有效代码中发生的错误，而这些正是try/catch必将发现的错误。 </p>
 <pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">try</span><span class="token punctuation">{</span> 
   test <span class="token operator">=</span> x <span class="token operator">+</span> <span class="token number">100</span><span class="token punctuation">;</span> 
 <span class="token punctuation">}</span> <span class="token keyword">catch</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">{</span> 
-  <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"x参数为定义"</span><span class="token punctuation">)</span>
+  <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"x参数未定义"</span><span class="token punctuation">)</span>
 <span class="token punctuation">}</span> 
 <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"程序正常"</span><span class="token punctuation">)</span></code></pre>
 <p>上面的代码是有效的，并且try/catch会捕获到运行时的错误。</p>
-<h3 id="Finally"><a href="#Finally" class="headerlink" title="Finally"></a><code>Finally</code></h3><p><code>Finally</code>标识没有错之后执行的代码，或者捕获错误后该怎么执行，他是你的try/catch块最后一条语句。<br>对于finally，你基本上是说，无论try/catch中发生什么（错误或没有错误），finally语句中的此代码都会运行。例如：</p>
+<h3 id="Finally"><a href="#Finally" class="headerlink" title="Finally"></a>Finally</h3><p><code>Finally</code>标识没有错之后执行的代码，或者捕获错误后该怎么执行，他是你的try/catch块最后一条语句。<br>对于finally，你基本上是说，无论try/catch中发生什么（错误或没有错误），finally语句中的此代码都会运行。例如：</p>
 <pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">let</span> test <span class="token operator">=</span> <span class="token string">''</span><span class="token punctuation">;</span>
 <span class="token keyword">try</span><span class="token punctuation">{</span> 
   <span class="token keyword">if</span><span class="token punctuation">(</span>data <span class="token operator">===</span> <span class="token string">""</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
