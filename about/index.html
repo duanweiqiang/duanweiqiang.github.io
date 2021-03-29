@@ -282,7 +282,7 @@
 
 <script>
     // 每天切换 banner 图.  Switch banner image every day.
-    $('.bg-cover').css('background-image', 'url(/medias/banner/1.jpg)');
+    $('.bg-cover').css('background-image', 'url(/medias/banner/2.jpg)');
 </script>
 
 
@@ -298,7 +298,7 @@
                     <div class="post-statis col l4 hide-on-med-and-down" data-aos="zoom-in-right">
                         
 <div class="statis">
-    <span class="count"><a href="/">16</a></span>
+    <span class="count"><a href="/">17</a></span>
     <span class="name">文章</span>
 </div>
 
@@ -312,7 +312,7 @@
 
 
 <div class="statis">
-    <span class="count"><a href="/tags">25</a></span>
+    <span class="count"><a href="/tags">26</a></span>
     <span class="name">标签</span>
 </div>
 
@@ -328,7 +328,7 @@
                                 <div class="post-statis hide-on-large-only" data-aos="zoom-in-right">
                                     
 <div class="statis">
-    <span class="count"><a href="/">16</a></span>
+    <span class="count"><a href="/">17</a></span>
     <span class="name">文章</span>
 </div>
 
@@ -342,7 +342,7 @@
 
 
 <div class="statis">
-    <span class="count"><a href="/tags">25</a></span>
+    <span class="count"><a href="/tags">26</a></span>
     <span class="name">标签</span>
 </div>
 
@@ -494,7 +494,7 @@
                 name: '文章篇数',
                 type: 'line',
                 color: ['#6772e5'],
-                data: [1,1,1,1,1,1,1,1,1,1,1,1,0],
+                data: [1,1,1,1,1,1,1,1,1,1,1,1,1],
                 markPoint: {
                     symbolSize: 45,
                     color: ['#fa755a','#3ecf8e','#82d3f4'],
@@ -536,7 +536,7 @@
                 type: 'pie',
                 radius: '50%',
                 color: ['#6772e5', '#ff9e0f', '#fa755a', '#3ecf8e', '#82d3f4', '#ab47bc', '#525f7f', '#f51c47', '#26A69A'],
-                data: [{"name":"前端","value":11},{"name":"命令","value":1},{"name":"人文","value":2},{"name":"全站","value":2}],
+                data: [{"name":"命令","value":1},{"name":"前端","value":12},{"name":"人文","value":2},{"name":"全站","value":2}],
                 itemStyle: {
                     emphasis: {
                         shadowBlur: 10,
@@ -560,7 +560,7 @@
         xAxis: [
             {
                 type: 'category',
-                data: ["React","web","debug","chrome","常识","css","hexo","blog","git","keyEvent"]
+                data: ["React","web","常识","debug","chrome","git","hexo","blog","生活","dom"]
             }
         ],
         yAxis: [
@@ -573,7 +573,7 @@
                 type: 'bar',
                 color: ['#82d3f4'],
                 barWidth : 18,
-                data: [5,4,2,2,2,1,1,1,1,1],
+                data: [5,5,2,2,2,1,1,1,1,1],
                 markPoint: {
                     symbolSize: 45,
                     data: [{
@@ -787,26 +787,8 @@
         <div class="tag-chips center-align">
             
             
-            <a href="/tags/css/">
-                <span class="chip center-align waves-effect waves-light chip-default">css</span>
-            </a>
-            
-            
-            
-            <a href="/tags/web/">
-                <span class="chip center-align waves-effect waves-light chip-default">web</span>
-            </a>
-            
-            
-            
-            <a href="/tags/debug/">
-                <span class="chip center-align waves-effect waves-light chip-default">debug</span>
-            </a>
-            
-            
-            
-            <a href="/tags/chrome/">
-                <span class="chip center-align waves-effect waves-light chip-default">chrome</span>
+            <a href="/tags/git/">
+                <span class="chip center-align waves-effect waves-light chip-default">git</span>
             </a>
             
             
@@ -823,22 +805,8 @@
             
             
             
-            <a href="/tags/git/">
-                <span class="chip center-align waves-effect waves-light chip-default">git</span>
-            </a>
-            
-            
-            
-            
-            
-            <a href="/tags/keyEvent/">
-                <span class="chip center-align waves-effect waves-light chip-default">keyEvent</span>
-            </a>
-            
-            
-            
-            <a href="/tags/dom/">
-                <span class="chip center-align waves-effect waves-light chip-default">dom</span>
+            <a href="/tags/%E7%94%9F%E6%B4%BB/">
+                <span class="chip center-align waves-effect waves-light chip-default">生活</span>
             </a>
             
             
@@ -849,20 +817,64 @@
             
             
             
+            <a href="/tags/debug/">
+                <span class="chip center-align waves-effect waves-light chip-default">debug</span>
+            </a>
+            
+            
+            
+            <a href="/tags/chrome/">
+                <span class="chip center-align waves-effect waves-light chip-default">chrome</span>
+            </a>
+            
+            
+            
+            
+            
+            <a href="/tags/dom/">
+                <span class="chip center-align waves-effect waves-light chip-default">dom</span>
+            </a>
+            
+            
+            
+            <a href="/tags/web/">
+                <span class="chip center-align waves-effect waves-light chip-default">web</span>
+            </a>
+            
+            
+            
+            <a href="/tags/token/">
+                <span class="chip center-align waves-effect waves-light chip-default">token</span>
+            </a>
+            
+            
+            
             <a href="/tags/Safari/">
                 <span class="chip center-align waves-effect waves-light chip-default">Safari</span>
             </a>
             
             
             
-            <a href="/tags/%E7%94%9F%E6%B4%BB/">
-                <span class="chip center-align waves-effect waves-light chip-default">生活</span>
+            <a href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">
+                <span class="chip center-align waves-effect waves-light chip-default">性能优化</span>
             </a>
             
             
             
-            <a href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">
-                <span class="chip center-align waves-effect waves-light chip-default">性能优化</span>
+            <a href="/tags/nodeJS/">
+                <span class="chip center-align waves-effect waves-light chip-default">nodeJS</span>
+            </a>
+            
+            
+            
+            <a href="/tags/express/">
+                <span class="chip center-align waves-effect waves-light chip-default">express</span>
+            </a>
+            
+            
+            
+            <a href="/tags/swig/">
+                <span class="chip center-align waves-effect waves-light chip-default">swig</span>
             </a>
             
             
@@ -891,8 +903,14 @@
             
             
             
-            <a href="/tags/ts/">
-                <span class="chip center-align waves-effect waves-light chip-default">ts</span>
+            <a href="/tags/Storage/">
+                <span class="chip center-align waves-effect waves-light chip-default">Storage</span>
+            </a>
+            
+            
+            
+            <a href="/tags/keyEvent/">
+                <span class="chip center-align waves-effect waves-light chip-default">keyEvent</span>
             </a>
             
             
@@ -903,32 +921,20 @@
             
             
             
-            <a href="/tags/nodeJS/">
-                <span class="chip center-align waves-effect waves-light chip-default">nodeJS</span>
+            <a href="/tags/ts/">
+                <span class="chip center-align waves-effect waves-light chip-default">ts</span>
             </a>
             
             
             
-            <a href="/tags/express/">
-                <span class="chip center-align waves-effect waves-light chip-default">express</span>
+            <a href="/tags/css/">
+                <span class="chip center-align waves-effect waves-light chip-default">css</span>
             </a>
             
             
             
-            <a href="/tags/swig/">
-                <span class="chip center-align waves-effect waves-light chip-default">swig</span>
-            </a>
-            
-            
-            
-            <a href="/tags/Storage/">
-                <span class="chip center-align waves-effect waves-light chip-default">Storage</span>
-            </a>
-            
-            
-            
-            <a href="/tags/token/">
-                <span class="chip center-align waves-effect waves-light chip-default">token</span>
+            <a href="/tags/%E9%94%99%E8%AF%AF/">
+                <span class="chip center-align waves-effect waves-light chip-default">错误</span>
             </a>
             
             
@@ -1002,7 +1008,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">28.5k</span>&nbsp;字
+                class="white-color">30.8k</span>&nbsp;字
             
             
             

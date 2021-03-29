@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>如何有好的处理js错误</title>
+      <link href="2021/03/21/try-catch/"/>
+      <url>2021/03/21/try-catch/</url>
+      
+        <content type="html"><![CDATA[<p>  写过程序的同学都是到，有时候我们在熬夜调试一些代码有多么沮丧，最后当你发现问题是你忽略的简单逗号或类似的东西时，我都可以肯定会笑出声来。但是，客户报的bug将带来更多的皱眉而不是微笑。</p><p>  话虽如此，错误可能令人烦恼，而背后却是真正的痛苦。有什么可以让用户体验好，不会看着像科幻里一样包一堆乱码，尤其是客户端，这就是我想解释一下JavaScript中称为try / catch的东西。</p><h2 id="什么是JavaScript中的try-catch"><a href="#什么是JavaScript中的try-catch" class="headerlink" title="什么是JavaScript中的try/catch"></a>什么是JavaScript中的try/catch</h2><p>try/catch块基本上是用来在JavaScript处理错误的。当你不希望脚本中的错误阻塞代码时，可以使用考虑使用它。</p><p>尽管看起来好像可以使用if语句轻松完成这些事情，但是try/catch 除了可以完成if/else语句可以完成的工作外，还为你带来很多好处。</p><pre class=" language-javascript"><code class="language-javascript">  <span class="token keyword">try</span><span class="token punctuation">{</span>    <span class="token comment" spellcheck="true">//...你的代码</span>  <span class="token punctuation">}</span><span class="token keyword">catch</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">{</span>    <span class="token comment" spellcheck="true">//...你的代码</span>  <span class="token punctuation">}</span></code></pre><p>使用try语句可以测试代码块是否存在错误，并且不会阻塞代码执行。例如：</p><pre class=" language-javascript"><code class="language-javascript">  <span class="token keyword">try</span><span class="token punctuation">{</span>     <span class="token function">getListData</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// getListData is not defined </span>  <span class="token punctuation">}</span><span class="token keyword">catch</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">{</span>    <span class="token function">alert</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span>  <span class="token punctuation">}</span></code></pre><p>这就是构造try/catch的方式。你将代码放在try块中，如果出现错误，JavaScript会立即控制catch语句，并按照你的代码执行。在这种情况下，它会警告你该错误。</p><p>所有JavaScript错误实际上都是包含两个属性的对象：名称（例如，Error，syntaxError等）和实际错误信息。这就是为什么当e发出警报时，会得到类似ReferenceError的错误：undefined getListData。</p><p>与JavaScript中的所有其他对象一样，你可以决定以不同的方式显示错误提示，例如e.name（ReferenceError）和e.message。</p><p>但老实说，这与JavaScript的功能并没有真正的不同。那么，try / catch语句的好处是什么？</p><h2 id="如何使用try-catch语句"><a href="#如何使用try-catch语句" class="headerlink" title="如何使用try/catch语句"></a>如何使用try/catch语句</h2><h4 id="throw"><a href="#throw" class="headerlink" title="throw"></a><code>throw</code></h4><p>  try/catch的优点之一是它能够显示你自己的自定义创建的错误。这称为抛错(throw error)。<br>  在你不希望JavaScript显示这种晦涩难懂的情况下，可以使用throw语句抛出错误（异常）。该错误可以是字符串，布尔值或对象。如果有错误，catch语句将显示你抛出的错误。（用户就不会看到乱码了，这样用户的反感情绪也不会那么大了）</p><pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">let</span> num <span class="token operator">=</span><span class="token function">prompt</span><span class="token punctuation">(</span><span class="token string">"输入一个大于30小于40的数字"</span><span class="token punctuation">)</span><span class="token keyword">try</span> <span class="token punctuation">{</span>   <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">isNaN</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>    <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">"不是一个数字(☉｡☉)!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>num<span class="token operator">></span><span class="token number">40</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>    <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">"数字大于40了"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>num <span class="token operator">&lt;=</span> <span class="token number">30</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>    <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">"数字小于30了"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token keyword">catch</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">{</span>  <span class="token function">alert</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">}</span></code></pre><p>这是自定义的错误，这些我们在写代码的时候基本已经做了友好的判断了，更多的是我们在业务中无法预料的错误，通过将错误与JavaScript构造函数错误一起抛出，我们可以更进一步。</p><p>基本上，JavaScript将错误分为六类：</p><ul><li>EvalError - eval函数中发生错误。</li><li>RangeError - 发生了超出范围的数字。</li><li>ReferenceError - 使用尚未声明的变量</li><li>SyntaxError - 出现语法错误时抛出;</li><li>TypeError - 你使用的值超出预期类型的​​范围;</li><li>URI（统一资源标识符）错误-如果你在URI函数中使用非法字符，则会引发URIError。</li></ul><p>因此，有了这一切，我们很容易引发类似的错误throw Error。在这种情况下，错误的名称将为Error，并且消息catch里。你甚至可以继续创建自己的自定义错误构造函数，例如：</p><pre class=" language-javascript"><code class="language-javascript">  <span class="token keyword">try</span> <span class="token punctuation">{</span>    <span class="token function">getDataList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>    <span class="token keyword">if</span> <span class="token punctuation">(</span>e <span class="token keyword">instanceof</span> <span class="token class-name">EvalError</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>      <span class="token function">alert</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>name <span class="token operator">+</span> <span class="token string">":"</span> <span class="token operator">+</span> e<span class="token punctuation">.</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>e <span class="token keyword">instanceof</span> <span class="token class-name">RangeError</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>      <span class="token function">alert</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>name <span class="token operator">+</span> <span class="token string">": "</span> <span class="token operator">+</span> e<span class="token punctuation">.</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token punctuation">}</span>   <span class="token punctuation">}</span></code></pre><p>而且，你可以轻松地在任何地方使用此功能throw new Error();<br>我们已经了解了try/catch及其如何防止脚本阻塞，但实际上取决于具体情况。让我们看下面这个例子：</p><pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">try</span><span class="token punctuation">{</span>   console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token keyword">catch</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">{</span>   <span class="token function">alert</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>message<span class="token punctuation">)</span> <span class="token punctuation">}</span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"最终的执行"</span><span class="token punctuation">)</span></code></pre><p>但是当你尝试使用try语句时，它仍然不起作用。这是因为JavaScript中有两种主要类型的错误；</p><p><code>解析时错误</code>和<code>运行时错误或异常</code></p><p><code>解析时错误</code>是代码内部发生的错误，主要是因为引擎无法解析代码。</p><p>例如，从上面看，JavaScript无法理解花括号的含义，因此，你的try/catch在这里没有作用。</p><p><code>运行时错误</code>是在有效代码中发生的错误，而这些正是try/catch必将发现的错误。 </p><pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">try</span><span class="token punctuation">{</span>   test <span class="token operator">=</span> x <span class="token operator">+</span> <span class="token number">100</span><span class="token punctuation">;</span> <span class="token punctuation">}</span> <span class="token keyword">catch</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">{</span>   <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"x参数为定义"</span><span class="token punctuation">)</span><span class="token punctuation">}</span> <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"程序正常"</span><span class="token punctuation">)</span></code></pre><p>上面的代码是有效的，并且try/catch会捕获到运行时的错误。</p><h3 id="Finally"><a href="#Finally" class="headerlink" title="Finally"></a><code>Finally</code></h3><p><code>Finally</code>标识没有错之后执行的代码，或者捕获错误后该怎么执行，他是你的try/catch块最后一条语句。<br>对于finally，你基本上是说，无论try/catch中发生什么（错误或没有错误），finally语句中的此代码都会运行。例如：</p><pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">let</span> test <span class="token operator">=</span> <span class="token string">''</span><span class="token punctuation">;</span><span class="token keyword">try</span><span class="token punctuation">{</span>   <span class="token keyword">if</span><span class="token punctuation">(</span>data <span class="token operator">===</span> <span class="token string">""</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>    <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">"test为空"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token punctuation">{</span>    <span class="token function">alert</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`hello </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>data<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token punctuation">}</span><span class="token punctuation">}</span> <span class="token keyword">catch</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">{</span>   <span class="token function">alert</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{</span>   <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"我时最后一条语句"</span><span class="token punctuation">)</span><span class="token punctuation">}</span></code></pre><h2 id="嵌套try块"><a href="#嵌套try块" class="headerlink" title="嵌套try块"></a>嵌套try块</h2><p>你也可以嵌套try块，但是与JavaScript中的其他所有嵌套（例如if，for等）一样，它往往变得笨拙且不可读，因此，我建议你不要这样做。<br>嵌套try块为你提供了将一个catch语句用于多个try语句的优势。当然你也可以决定为每个try块编写一个catch语句，如下所示：</p><pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">try</span> <span class="token punctuation">{</span>   <span class="token keyword">try</span> <span class="token punctuation">{</span>     <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">'test'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token punctuation">}</span> <span class="token keyword">catch</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">{</span>    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span>   <span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{</span>     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'finally'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token punctuation">}</span> <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">ex</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>   console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'ex error '</span><span class="token operator">+</span>ex<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span></code></pre><p>在这种情况下，外部try块不会有任何错误，因为它没有错。该错误来自内部try块，并且它已经处理了（它具有自己的catch语句）。</p><p>像这样面考虑的问题：</p><pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">try</span> <span class="token punctuation">{</span>   <span class="token keyword">try</span> <span class="token punctuation">{</span>     <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">'inner catch error'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{</span>    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'finally'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token punctuation">}</span> <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">ex</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>   console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>ex<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span></code></pre><p>上面的代码的工作原理略有不同：错误发生在内部try块中，没有catch语句，但是出现了finally语句。</p><p>需要注意的是try/catch语句可以用三种不同的方式来写：try…catch，try…finally，try…catch…finally，但错误是这种内在的。</p><p>这种内部尝试的最后声明肯定会起作用，因为就像我们前面说过的那样，无论try / catch中发生什么，它都可以起作用。但是，即使外部尝试没有错误，也仍然可以控制捕获以记录错误。甚至更好的是，它使用我们在内部try语句中创建的错误，因为该错误来自那里。</p><p>如果我们要为外部尝试创建一个错误，它将仍然显示所创建的内部错误，但内部错误会捕获到自己的错误。</p><p>你可以通过注释掉内部错误代码来使用下面的代码。</p><pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">try</span> <span class="token punctuation">{</span>   <span class="token keyword">try</span> <span class="token punctuation">{</span>     <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">'内部 error'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token punctuation">}</span> <span class="token keyword">catch</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token comment" spellcheck="true">//comment this catch out</span>    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span>   <span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{</span>     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'finally'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token punctuation">}</span>   <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">"外部 error"</span><span class="token punctuation">)</span> <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">ex</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>   console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>ex<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span></code></pre><h2 id="重新抛出错误"><a href="#重新抛出错误" class="headerlink" title="重新抛出错误"></a>重新抛出错误</h2><p>catch语句实际上捕获了所有发生的错误，有时我们可能不希望这样。例如，</p><pre class=" language-javascript"><code class="language-javascript"><span class="token string">"use strict"</span> <span class="token keyword">let</span> x<span class="token operator">=</span><span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token function">prompt</span><span class="token punctuation">(</span><span class="token string">" 请输入一个小于 5 的数字 "</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">try</span><span class="token punctuation">{</span>   y<span class="token operator">=</span>x<span class="token number">-10</span>   <span class="token keyword">if</span><span class="token punctuation">(</span>y<span class="token operator">>=</span><span class="token number">5</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>    <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">" y 不小于 5"</span><span class="token punctuation">)</span>   <span class="token punctuation">}</span> <span class="token keyword">else</span><span class="token punctuation">{</span>    <span class="token function">alert</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token keyword">catch</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">{</span>   <span class="token function">alert</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">}</span></code></pre><p>假设输入的数字小于5（“使用严格”的目的是指示代码应在“严格模式”下执行）。在严格模式下，不能使用未声明的变量。</p><p>我希望try语句不会引发y的错误（当y的值大于5时，这几乎是不可能的）。上面的错误应该是因为y不小于输入的数字，并且不是y是undefined。</p><p>在这种情况下，你可以检查错误的名称，如果不是你想要的名称，则将其重新抛出：</p><pre class=" language-javascript"><code class="language-javascript"><span class="token string">"use strict"</span> <span class="token keyword">let</span> x <span class="token operator">=</span> <span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token function">prompt</span><span class="token punctuation">(</span><span class="token string">"请输入一个小于 5 的数字"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token keyword">try</span><span class="token punctuation">{</span>  y<span class="token operator">=</span>x<span class="token number">-10</span>   <span class="token keyword">if</span><span class="token punctuation">(</span>y<span class="token operator">>=</span><span class="token number">5</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>    <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">"YYYY"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>    <span class="token function">alert</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token keyword">catch</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">{</span>   <span class="token keyword">if</span><span class="token punctuation">(</span>e <span class="token keyword">instanceof</span> <span class="token class-name">ReferenceError</span><span class="token punctuation">)</span><span class="token punctuation">{</span>     <span class="token keyword">throw</span> e  <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token function">alert</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">}</span> </code></pre><p>这将简单地将错误重新抛出，以供另一个try语句在此处捕获阻塞脚本继续执行。当你只想监视特定类型的错误，而由于疏忽可能发生错误导致代码报错，此功能很有用。</p><h2 id="适合使用try-catch的场景"><a href="#适合使用try-catch的场景" class="headerlink" title="适合使用try/catch的场景"></a>适合使用try/catch的场景</h2><p>因此，不要把判断 null ，undefined，这种都用try catch 。<br>而是尽量用在不可知的错误捕获上，而不是未知的错误。比如用来捕获宿主对象或者ECMAScript抛出的异常。</p><p>NodeJS里大多数error都是用来处理异常的，因为异常是不可避免的，例如数据库挂了，网络错误，你虽然知道有可能，但是不知道何时发生，这些异常你需要捕捉或者传给上层。而错误处理，则是一些基本的判定，可以从代码级别避免其发生，可预知可推测，如果发生了，不是系统问题，而是你的程序有bug了。</p><p>对于NodeJS来说，两种错误都时刻需要注意，特别是系统错误，因为不可预知，需要大量代码来catch错误，传递错误，最后统一处理。</p><h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>到这里我们的tru/catch就解释完了，基本包含了常用到的场景。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 前端 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> web </tag>
+            
+            <tag> 错误 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>使用 D3.js 创建可交互的柱状图</title>
       <link href="2021/02/20/CSS-D3/"/>
       <url>2021/02/20/CSS-D3/</url>
@@ -20,9 +47,9 @@
       
         <tags>
             
-            <tag> css </tag>
-            
             <tag> web </tag>
+            
+            <tag> css </tag>
             
         </tags>
       
@@ -47,9 +74,9 @@
       
         <tags>
             
-            <tag> ts </tag>
-            
             <tag> umi </tag>
+            
+            <tag> ts </tag>
             
         </tags>
       
@@ -74,9 +101,9 @@
       
         <tags>
             
-            <tag> web </tag>
-            
             <tag> debug </tag>
+            
+            <tag> web </tag>
             
             <tag> Safari </tag>
             
@@ -184,9 +211,9 @@
       
         <tags>
             
-            <tag> web </tag>
-            
             <tag> chrome </tag>
+            
+            <tag> web </tag>
             
             <tag> Storage </tag>
             
@@ -338,6 +365,31 @@
     
     
     <entry>
+      <title>git 常用命令</title>
+      <link href="2020/02/12/git-use/"/>
+      <url>2020/02/12/git-use/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> 命令 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> git </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>hexo 配置教程</title>
       <link href="2020/02/12/hello-world/"/>
       <url>2020/02/12/hello-world/</url>
@@ -357,31 +409,6 @@
             <tag> hexo </tag>
             
             <tag> blog </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>git 常用命令</title>
-      <link href="2020/02/12/git-use/"/>
-      <url>2020/02/12/git-use/</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-      
-      <categories>
-          
-          <category> 命令 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> git </tag>
             
         </tags>
       
@@ -431,9 +458,9 @@
       
         <tags>
             
-            <tag> 常识 </tag>
-            
             <tag> 生活 </tag>
+            
+            <tag> 常识 </tag>
             
         </tags>
       
